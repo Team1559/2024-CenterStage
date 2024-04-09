@@ -152,7 +152,7 @@ public class DriveCommands {
 
     public static Command pointToAngleCommand(DriveBase driveBase, DoubleSupplier xSupplier,
             DoubleSupplier ySupplier,
-            double angle) {
+            Supplier<Rotation2d> targetAngleSupplier) {
 
         Command aimingDrive = new Command() {
 
@@ -163,13 +163,13 @@ public class DriveCommands {
                 // TODO: Use same units when calculating KP.
                 pid = new PIDController(CONSTANTS.getMaxAngularSpeed().in(RadiansPerSecond) /
                         90 /* degrees */, 0, 0);
-                pid.setSetpoint(0); // Degrees from target.
                 pid.setTolerance(1/* degree(s) */);
                 pid.enableContinuousInput(-180, 180); // Degrees.
             }
 
             @Override
             public void execute() {
+                pid.setSetpoint(targetAngleSupplier.get().getDegrees());
                 double linearMagnitude = calculateLinearMagnitude(xSupplier, ySupplier);
                 // Calcaulate new linear velocity.
                 Rotation2d linearDirection = calculateLinearDirection(xSupplier, ySupplier);
@@ -183,7 +183,7 @@ public class DriveCommands {
                 // We are inverting the direction because degreesToTarget is our
                 // "correction",
                 // but the PIDController wants our "position".
-                double omega = pid.calculate(angle);
+                double omega = pid.calculate(driveBase.getRotation().getDegrees());
 
                 omega = MathUtil.clamp(omega,
                         -CONSTANTS.getMaxAngularSpeed().in(RadiansPerSecond),
@@ -211,6 +211,8 @@ public class DriveCommands {
                         scaledYVelocity);
                 Logger.recordOutput("DriveCommands/PointToAngleCommand/omegaRadiansPerSecond",
                         omega);
+                Logger.recordOutput("DriveCommands/PointToAngleCommand/currentAngle", driveBase.getRotation());
+                Logger.recordOutput("DriveCommands/PointToAngleCommand/targetAngle", targetAngleSupplier.get());
             }
 
             @Override

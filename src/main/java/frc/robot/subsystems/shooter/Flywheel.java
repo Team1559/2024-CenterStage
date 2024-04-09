@@ -20,6 +20,7 @@ import edu.wpi.first.units.Measure;
 import edu.wpi.first.units.Temperature;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.StartEndCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Flywheel extends SubsystemBase {
@@ -93,9 +94,9 @@ public class Flywheel extends SubsystemBase {
         // Only set the Motor Configuration once, to avoid accidentally overriding
         // configs with defaults.
         flywheelMotorL.getConfigurator().apply(getDefaultTalonFXConfiguration(
-                InvertedValue.CounterClockwise_Positive /* default */, NeutralModeValue.Coast));
-        flywheelMotorR.getConfigurator().apply(getDefaultTalonFXConfiguration(
                 InvertedValue.Clockwise_Positive /* inverted */, NeutralModeValue.Coast));
+        flywheelMotorR.getConfigurator().apply(getDefaultTalonFXConfiguration(
+                InvertedValue.CounterClockwise_Positive /* default */, NeutralModeValue.Coast));
 
         // ---------- Define Loggable Fields ----------
         flywheelLMotorVoltage = flywheelMotorL.getMotorVoltage();
@@ -229,6 +230,10 @@ public class Flywheel extends SubsystemBase {
 
     public boolean atSpeed() {
         return flywheelLVelocity.getValueAsDouble() > 75 && flywheelRVelocity.getValueAsDouble() > 75;
+    }
+
+    public Command runCommand() {
+        return new StartEndCommand(this::start, this::stop, this);
     }
 
     // ========================= Commands =========================

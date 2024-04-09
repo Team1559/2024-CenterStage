@@ -123,7 +123,7 @@ public class GameRobotConstants extends AbstractConstants {
     @Override
     public double getFeederForwardVelocity() {
         // TODO: Configure Value.
-        return getIntakeForwardVelocity() / 2;
+        return getIntakeForwardVelocity();
     }
 
     @Override
@@ -196,10 +196,14 @@ public class GameRobotConstants extends AbstractConstants {
     public Map<WheelModuleIndex, Rotation2d> getSwerveModuleEncoderOffsets() {
         return new HashMap<>() {
             {
-                put(WheelModuleIndex.FRONT_LEFT, Rotation2d.fromRadians(0.15339807878856412));
-                put(WheelModuleIndex.FRONT_RIGHT, Rotation2d.fromRadians(-0.34821363885004053));
-                put(WheelModuleIndex.BACK_LEFT, Rotation2d.fromRadians(2.794912995527638));
-                put(WheelModuleIndex.BACK_RIGHT, Rotation2d.fromRadians(0.8958447801252143));
+                put(WheelModuleIndex.FRONT_LEFT,
+                        Rotation2d.fromRadians(0.12732040539450823));
+                put(WheelModuleIndex.FRONT_RIGHT,
+                        Rotation2d.fromRadians(-0.3436116964863836));
+                put(WheelModuleIndex.BACK_LEFT,
+                        Rotation2d.fromRadians(2.745825610315298));
+                put(WheelModuleIndex.BACK_RIGHT,
+                        Rotation2d.fromRadians(0.8620972027917303));
             }
         };
     }

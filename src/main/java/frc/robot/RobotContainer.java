@@ -274,7 +274,7 @@ public class RobotContainer {
                 pilot::getLeftX,
                 CONSTANTS::getSpeakerLocation));
         pilot.rightTrigger().whileTrue(DriveCommands.pointToAngleCommand(driveBase, pilot::getLeftY, pilot::getLeftX,
-                CONSTANTS.getSourceAngle()));
+                CONSTANTS::getSourceAngle));
         if (CONSTANTS.hasFlywheelSubsystem() && CONSTANTS.hasAimerSubsystem()) {
             pilot.leftTrigger().onFalse(flywheel.stopCommand().andThen(new WaitUntilCommand(1))
                     .andThen(aimer.setTargetAngleCommand(CONSTANTS.getAimerAngleRange().get_0())));
@@ -295,12 +295,11 @@ public class RobotContainer {
         }
 
         if (CONSTANTS.hasFeederSubsystem() && CONSTANTS.hasFlywheelSubsystem()) {
-
             if (CONSTANTS.hasNoteSensorSubsystem()) {
                 coPilot.rightTrigger()
                         .onTrue(ShooterCommands.shootTeleopCommand(feeder, flywheel, intake, noteSensor));
+                coPilot.x().whileTrue(flywheel.runCommand());
             }
-            coPilot.a().whileTrue(ShooterCommands.reverseShooterCommand(flywheel, feeder, leds));
         }
 
         if (CONSTANTS.hasClimberSubsystem()) {

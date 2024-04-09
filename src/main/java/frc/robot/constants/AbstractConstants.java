@@ -216,11 +216,11 @@ public abstract class AbstractConstants {
         }
     }
 
-    public double getSourceAngle() {
+    public Rotation2d getSourceAngle() {
         if (getAlliance() == Alliance.Blue) {
-            return 120;
+            return Rotation2d.fromDegrees(-60);
         } else {
-            return 60;
+            return Rotation2d.fromDegrees(-120);
         }
     }
 
@@ -414,7 +414,7 @@ public abstract class AbstractConstants {
      * @return Value as Amps.
      */
     public int getNeo550BrushlessCurrentLimit() {
-        return 24;
+        return 40;
     }
 
     /**

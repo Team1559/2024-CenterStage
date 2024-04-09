@@ -26,7 +26,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "DriveFromTop"
+            "pathName": "MoveDiagonally"
           }
         },
         {
@@ -38,19 +38,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "GoToMid"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "Copy of GoBackFromMid"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Auto Shoot"
+            "pathName": "R spike to centerline"
           }
         }
       ]
