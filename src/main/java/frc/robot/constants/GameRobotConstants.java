@@ -77,7 +77,7 @@ public class GameRobotConstants extends AbstractConstants {
 
     public Measure<Velocity<Distance>> getMaxLinearSpeed() {
         // TODO: Tune.
-        return MetersPerSecond.of(5);
+        return MetersPerSecond.of(2);
     }
 
     // #endregion
@@ -138,7 +138,7 @@ public class GameRobotConstants extends AbstractConstants {
     @Override
     public double getFlywheelForwardVoltage() {
         // TODO: Configure Value.
-        return 10;
+        return 6;
     }
 
     @Override

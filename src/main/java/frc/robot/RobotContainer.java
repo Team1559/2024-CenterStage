@@ -279,7 +279,7 @@ public class RobotContainer {
             pilot.leftTrigger().onFalse(flywheel.stopCommand().andThen(new WaitUntilCommand(1))
                     .andThen(aimer.setTargetAngleCommand(CONSTANTS.getAimerAngleRange().get_0())));
         }
-        // pilot.y().onTrue(driveBase.resetFieldOrientationCommand());
+        pilot.y().onTrue(driveBase.resetFieldOrientationCommand());
         // #endregion
 
         // #region: ---------- Configure Controller 1 for Co-Pilot ----------
