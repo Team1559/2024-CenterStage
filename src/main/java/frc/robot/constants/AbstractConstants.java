@@ -387,7 +387,7 @@ public abstract class AbstractConstants {
      * See: <a href=
      * "https://www.chiefdelphi.com/uploads/short-url/eVYO5tVOYZecwq6Tl2kURlFZFgq.pdf">Falcon
      * 500 temperature test under maximum load conditions</a>
-     * 
+     *
      * @return 109 degrees C
      */
     public Measure<Temperature> getFalcon500MaxTemperature() {
@@ -416,7 +416,7 @@ public abstract class AbstractConstants {
 
     // #region: --------------- Operation Modes --------------------------------
     public OperatingMode getCurrentOperatingMode() {
-        return OperatingMode.REAL_WORLD;
+        return OperatingMode.SIMULATION;
     }
 
     public abstract boolean isDrivingModeFieldRelative();
@@ -433,7 +433,7 @@ public abstract class AbstractConstants {
 
     /**
      * This higher rate is needed by PathPlanner.
-     * 
+     *
      * @return Value in Times per Second.
      */
     public double getPathPlannerLogFrequencyForOdometry() {
