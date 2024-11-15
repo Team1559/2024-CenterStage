@@ -152,8 +152,8 @@ public class DriveBase extends SubsystemBase {
 
         // Log empty setpoint states when disabled
         if (DriverStation.isDisabled()) {
-            Logger.recordOutput("SwerveStates/Setpoints []");
-            Logger.recordOutput("SwerveStates/SetpointsOptimized []");
+            Logger.recordOutput("SwerveStates/Setpoints", new SwerveModuleState[] {});
+            Logger.recordOutput("SwerveStates/SetpointsOptimized", new SwerveModuleState[] {});
         }
 
         // Update odometry
